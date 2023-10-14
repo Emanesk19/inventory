@@ -1,0 +1,59 @@
+<div class="container mt-4 w-25 p-3 h-25 ">
+    <div class="">
+       <h1>Order Product</h1>
+
+       <form action="">
+        <table class="pl-5">
+            <tr>
+                <td>
+                    <label for="">Product </label>
+                    <select name="Category" id="" [(ngModel)]="name"  [ngModelOptions]="{standalone:true} " >
+                        <option value=""  [ngValue]="pro.name" *ngFor="let pro of productArray ; ">{{pro.name}}
+                        </option>
+                        
+                    </select>
+                </td>
+                <td >
+                    <label for="">Category</label>
+                    <select name="Category" id="" [(ngModel)]="category_Name" [ngModelOptions]="{standalone:true} " >
+                        <option value="" [ngValue]="cat.name" *ngFor="let cat of categoryArray ; let i = index">{{cat.name}}</option>
+                    </select>
+                   
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="store">Number ORdered</label>
+                        <input type="text" [(ngModel)]="num" [ngModelOptions]="{standalone:true} " class="form-control" id="store" placeholder="storeID">
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <label for="qty_pcs">From</label>
+                        <input type="text" class="form-control" id="qty_pcs" [(ngModel)]="from" [ngModelOptions]="{standalone:true} " placeholder="Store ID">
+                </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="store">To</label>
+                        <input type="text"  class="form-control" id="store" [(ngModel)]="to" [ngModelOptions]="{standalone:true} " placeholder="store ID">
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <label for="soldQty">Order Date</label>
+                        <input type="date"  class="form-control" id="soldQty" placeholder="">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+               
+            </tr>
+        </table>
+        <button type="submit" class="btn btn-primary mt-4" (click)="order()" >Order</button>
+       </form>
+    </div>
+</div>

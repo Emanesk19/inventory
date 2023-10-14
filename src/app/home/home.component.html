@@ -1,0 +1,61 @@
+<div class="main">
+    <div class="top">
+               <div class="logo">
+                      <img src="assets/logo.png" alt="" >
+               </div>
+                <div class="order">
+                            <a routerLink="/order" id="links">Order</a> 
+                </div>
+                <div class="ShegoleA">
+                           <a routerLink="/ShegoleA"  id="links">ShegoleA</a>
+                </div>
+                <div class="ShegoleB">
+                  <a routerLink="/ShegoleB"  id="links">ShegoleB</a>
+                </div>
+                <div class="piassa">
+                  <a routerLink="/piassa"  id="links">Piassa</a>
+                </div>
+                <div class="Condeminum">
+                  <a routerLink="/condomin"  id="links">Condeminum</a>
+                </div>   
+    </div>       
+</div>
+               
+<div class="container mt-4" >
+  <h1>All Products</h1>
+<table class="table">
+  <thead>
+   <h1 *ngIf="!isresultLoaded">Loading.................</h1>      
+  <tr>
+      <th scope="col">No.</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Qty/Crt</th>  
+      <th scope="col">Qty/Pcs</th> 
+      <th scope="col">Price</th> 
+      <th scope="col">Category</th>   
+    </tr>
+  </thead>
+  <tbody *ngFor="let productItem of filteredProducts; index as i" >
+      <tr >
+      <td>{{i}}</td>
+      <td>{{productItem.name }}</td>
+      <td *ngIf="productItem.qty_crt < 5  ; else notLess">{{productItem.qty_crt }} </td>
+              <ng-template #notLess>
+                  <td>{{productItem.qty_crt }}</td>
+              </ng-template>
+      <td>{{productItem.qty_pcs }}</td>
+      <td>{{productItem.price }}</td>
+      <td>{{productItem.categoryName }}</td>
+    </tr>          
+  </tbody>
+  <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul>
+    </nav>
+</table>
+</div>

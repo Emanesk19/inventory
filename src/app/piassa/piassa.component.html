@@ -1,0 +1,113 @@
+
+<li class="nav-item" id="search">
+    <form class="w-70 me-5" role="search">
+    <input 
+    #query
+    (keyup)="filterProduct(query.value)"
+    type="search" class="form-control" placeholder="Search..." aria-label="Search" >
+  </form>
+    <button type="submit" class="btn btn-primary mt-4" (click)="Add()">{{btnName}}</button>
+
+</li>
+
+<div class="container mt-4 w-25 p-3 h-25 "  *ngIf="showForm">
+  <div class="">
+     <h1> Product add</h1>
+
+     <form action="">
+      <table>
+          <tr>
+              <td>
+                  <div class="form-group">
+                      <label for="name">Product Name</label>
+                      <input type="text" [(ngModel)]="name" [ngModelOptions]="{standalone:true} " class="form-control" id="name" placeholder="Product name">
+              </div>
+              </td>
+              <td>
+                  <div class="form-group">
+                      <label for="qty_crt">Qty/crt</label>
+                      <input type="text" [(ngModel)]="qty_crt" [ngModelOptions]="{standalone:true} " class="form-control" id="qty_crt" placeholder="Quantity/cartoon">
+              </div>
+              </td>
+          </tr>
+          <tr>
+              
+              <td>
+                  <div class="form-group">
+                      <label for="qty_pcs">Qty/PCs</label>
+                      <input type="text" [(ngModel)]="qty_pcs" [ngModelOptions]="{standalone:true} " class="form-control" id="qty_pcs" placeholder="Quantity/Pices">
+              </div>
+              </td>
+
+              <td >
+                  <label for="">Category</label>
+                  <select name="Category" id="" [(ngModel)]="categoryId" [ngModelOptions]="{standalone:true} " >
+                      <option value="" [ngValue]="cat.name" *ngFor="let cat of categoryArray ; let i = index">{{cat.name}}</option>
+                  </select>
+                 
+              </td>
+          </tr>
+          <tr>
+              
+              <td>
+                  <div class="form-group">
+                      <label for="store">store</label>
+                      <input type="text" [(ngModel)]="storeID" [ngModelOptions]="{standalone:true} " class="form-control" id="store" placeholder="storeID">
+                  </div>
+              </td>
+          </tr>
+      </table>
+
+
+
+
+      <button type="submit" class="btn btn-primary mt-4" (click)="save()">Save</button>
+     </form>
+  </div>
+</div>
+
+    <div class="container mt-4" >
+        <h1>Product Table</h1>
+    <table class="table">
+        <thead>
+         <h1 *ngIf="!isresultLoaded">Loading.................</h1>      
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Qty/Crt</th>  
+            <th scope="col">Qty/Pcs</th> 
+            <th scope="col">Category</th>   
+           
+
+          </tr>
+        </thead>
+        <tbody *ngFor="let productItem of filteredProducts" >
+            <tr >
+            <td>{{productItem.id  }}</td>
+            <td>{{productItem.name }}</td>
+            <td *ngIf="productItem.qty_crt < 5  ; else notLess" class="btn btn-danger"> {{productItem.qty_crt }} </td>
+                    <ng-template #notLess>
+                        <td>{{productItem.qty_crt }}</td>
+                    </ng-template>
+            <td>{{productItem.qty_pcs }}</td>
+            <td>{{productItem.categoryName }}</td>
+            
+            <td>{{productItem.storeId }}</td>
+
+            <td>
+              <button type="button" class="btn btn-success btn-sm" (click)="setUpdate(productItem)">Edit</button>
+              <button type="button" class="btn btn-danger  btn-sm" (click)="setDelete(productItem)">Delete</button>            
+            </td>
+          </tr>          
+        </tbody>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+          </nav>
+      </table>
+    </div>
